@@ -2,7 +2,7 @@
 	<view class="content">
 		<mrpzx-checker-box @on-change="onChange" :type="type" v-model="question.model" :class="{'item-selected': isCheck}">
 		    <view class="title">{{question.title}}</view>
-		    <mrpzx-checker-item @checkItem="contentClick" iconType="box" :checked="false" :value="vo.id" :index="questionIndex" v-for="(vo, index) in question.answer" :key="index">
+		    <mrpzx-checker-item @checkItem="contentClick" iconType="circle" :checked="false" :value="vo.id" :index="questionIndex" v-for="(vo, index) in question.answer" :key="index">
 		        <view class="answer">{{vo.title}}</view>
 		        <view class="line"></view>
 		    </mrpzx-checker-item>
@@ -18,7 +18,7 @@
         components: { mrpzxCheckerBox, mrpzxCheckerItem },
 		data() {
 			return {
-                type: 'checkbox',
+                type: 'radio',
                 isCheck: !1,
 				question: {
                     title: '您的年龄是？',
@@ -46,7 +46,7 @@
 		methods: {
             contentClick (isCheck, index, value) {
                 this.isCheck = isCheck
-                if (this.type == 'type') {
+                if (this.type == 'radio') {
                     console.log('isCheck: ' + isCheck + "\n" + 'index: ' + index + "\n" + 'value:' + value)
                     console.log('选中了：' + this.question.model)
                 } else {
