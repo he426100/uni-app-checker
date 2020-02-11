@@ -138,7 +138,7 @@
 | :-------------------- | :------------------------------ | :---------- | :-------- | :--- |  
 | value | 值 | - | - | - |
 | index | 索引/名字 | number/string | - | - |
-| height | 高度 | - | - | - | - |
+| height | 高度 | - | - | - |
 | width | 宽度 | - | - | - |
 | iconType | 图标类型 | string | circle/box | circle |
 | checked | 是否选中 | boolean | true/false | false |
