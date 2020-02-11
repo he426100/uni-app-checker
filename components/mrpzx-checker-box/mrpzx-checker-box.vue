@@ -42,7 +42,7 @@
                 if ("radio" === this.type) {
                     if (!isCheck && this.must) {
                         let selected = this.childrens.find(e => e.value == value)
-                        if (selected) {
+                        if (void 0 !== selected) {
                             return selected.isCheck = !0
                         }
                     }
@@ -56,7 +56,11 @@
                 } else if ("checkbox" === this.type) {
                     if (!isCheck && this.must) {
                         if (this.childrens.findIndex(e => e.isCheck) === -1) {
-                            return selected.isCheck = !0
+                            let _value = Object.keys(value)[0]
+                            let selected = this.childrens.find(e => e.value == _value)
+                            if (void 0 !== selected) {
+                                return selected.isCheck = !0
+                            }
                         }
                     }
                     Object.assign(this.hashCache, value)
