@@ -50,8 +50,7 @@
         },
         data: function() {
             return {
-                isCheck: !1,
-                cache: {}
+                isCheck: !1
             }
         },
         methods: {
@@ -104,7 +103,9 @@
 	}
 </script>
 
-<style>
+<style scoped>
+    @import 'https://at.alicdn.com/t/font_1631308_vq3i1lc4bao.css';
+
     .checker-item .checker-icon {
         width: 46rpx;
         height: 46rpx;
@@ -140,5 +141,21 @@
     
     .checker-item .icon-checkbox_sel {
         color: #2e5bff
+    }
+
+    .checker-box .checker-item {
+        position: relative;
+        padding: 0 38rpx
+    }
+    
+    .checker-box .checker-item:active {
+        background-color: #f2f4f6;
+        font-weight: 700
+    }
+    
+    .checker-box .checker-icon {
+        position: absolute;
+        right: 30rpx;
+        top: 45rpx
     }
 </style>

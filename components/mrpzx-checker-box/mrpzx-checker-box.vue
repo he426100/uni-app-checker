@@ -14,6 +14,10 @@
             type: {
                 type: String,
                 default: "radio"
+            },
+            must: {
+                type: Boolean,
+                default: false
             }
         },
         data () {
@@ -32,21 +36,32 @@
         methods: {
             /**
              * @param {Object} value radio时value为单个值，如 xxx，checkbox时为对象，如 {'xxx': true}
-             * @param {Object} isCheck 是否选中
+             * @param {Boolean} isCheck 是否选中
              */
             changeHandler (value, isCheck) {
-                if ("radio" === this.type)
-                    this.$emit("input", value),
-                    this.$emit("on-change", value, isCheck),
+                if ("radio" === this.type) {
+                    if (!isCheck && this.must) {
+                        let selected = this.childrens.find(e => e.value == value)
+                        if (selected) {
+                            return selected.isCheck = !0
+                        }
+                    }
+                    this.$emit("input", value)
+                    this.$emit("on-change", value, isCheck)
                     this.childrens.forEach((item, index) => {
                         if (item.isCheck && value !== item.value) {
                             item.isCheck = false
                         }
                     })
-                else if ("checkbox" === this.type) {
-                    Object.assign(this.hashCache, value);
-                    let i = this.parseHashCache();
-                    this.$emit("input", i),
+                } else if ("checkbox" === this.type) {
+                    if (!isCheck && this.must) {
+                        if (this.childrens.findIndex(e => e.isCheck) === -1) {
+                            return selected.isCheck = !0
+                        }
+                    }
+                    Object.assign(this.hashCache, value)
+                    let i = this.parseHashCache()
+                    this.$emit("input", i)
                     this.$emit("on-change", i)
                 }
             },
@@ -57,8 +72,8 @@
                         this.hashCache[item.value] = false
                     }
                 })
-                let e = this.parseHashCache();
-                this.$emit("update:value", e),
+                let e = this.parseHashCache()
+                this.$emit("update:value", e)
                 this.$emit("on-change", e)
             },
             clear () {
@@ -67,7 +82,7 @@
                         this.hashCache[item.value] = true
                     }
                 })
-                let e = this.parseHashCache();
+                let e = this.parseHashCache()
                 this.$emit("update:value", e)
             },
             checkAll () {
@@ -76,8 +91,8 @@
                         this.hashCache[item.value] = true
                     }
                 })
-                let e = this.parseHashCache();
-                this.$emit("update:value", e),
+                let e = this.parseHashCache()
+                this.$emit("update:value", e)
                 this.$emit("on-change", e)
             },
             parseHashCache () {
@@ -92,3 +107,13 @@
         }
 	}
 </script>
+
+<style scoped>
+    .checker-box {
+        background-color: #fff;
+        min-height: 900rpx;
+        -webkit-box-shadow: 0 2px 4px 0 #e5e5e5;
+        box-shadow: 0 2px 4px 0 #e5e5e5;
+        border-radius: 8rpx
+    }
+</style>
