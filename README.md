@@ -1,6 +1,6 @@
 **插件使用说明**
 
-- 支持radio和checkbox，支持双向绑定，测试过App和H5
+- 支持radio和checkbox，支持双向绑定，测试过App、H5、微信小程序
 - 基于 vant-checker，修改以适用于uni-app，部分逻辑参考uni-collapse
 - 组件中用到的iconfont图标放置在示例项目static/svg文件夹中，上传到iconfont再加入到自己项目就可以用了
 - 遵守easycom规范，可直接使用
