@@ -22,6 +22,7 @@
                 </mrpzx-checker-item>
             </mrpzx-checker-box>
         </view>
+        <button @click="checkAll">全选</button>
     </view>
 </template>
 
@@ -65,14 +66,17 @@
                 console.log((isCheck ? '选中了：' : '取消选中') + value)
                 console.log('question.value: ' + JSON.stringify(this.question.value))
             },
-            onChange (value, isCheck) {
-                console.log('changed: ' + JSON.stringify([value, isCheck]))
+            onChange (value) {
+                console.log('changed: ' + JSON.stringify(value))
             },
             onOptionChange (value, isCheck) {
                 if (value !== this.type) {
                     this.$refs.questionChecker.clearCheck()
                 }
                 this.type = value
+            },
+            checkAll () {
+                this.$refs.questionChecker.checkAll()
             }
 		}
 	}

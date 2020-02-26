@@ -90,10 +90,9 @@
                 this.$emit("update:value", e)
             },
             checkAll () {
+                if ("radio" === this.type) return
                 this.childrens.forEach((item, index) => {
-                    if (item.isCheck) {
-                        this.hashCache[item.value] = true
-                    }
+                    this.hashCache[item.value] = item.isCheck = true
                 })
                 let e = this.parseHashCache()
                 this.$emit("update:value", e)
